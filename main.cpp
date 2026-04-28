@@ -18,7 +18,7 @@ const auto points = [] () {
 } ();
 }
 
-SDL_AppResult SDL_AppInit(void** gameState, int argc, char** argv) {
+SDL_AppResult SDL_AppInit(void** appState, int argc, char** argv) {
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Couldn't initialize SDL: %s", SDL_GetError());
         return SDL_APP_FAILURE;
@@ -40,7 +40,7 @@ SDL_AppResult SDL_AppInit(void** gameState, int argc, char** argv) {
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppEvent(void* gameState, SDL_Event* event) {
+SDL_AppResult SDL_AppEvent(void* appState, SDL_Event* event) {
     switch (event->type) {
     case SDL_EVENT_QUIT:
         return SDL_APP_SUCCESS;
@@ -54,7 +54,7 @@ SDL_AppResult SDL_AppEvent(void* gameState, SDL_Event* event) {
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppIterate(void* gameState) {
+SDL_AppResult SDL_AppIterate(void* appState) {
     SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
     SDL_RenderClear(renderer);
 
@@ -77,6 +77,6 @@ SDL_AppResult SDL_AppIterate(void* gameState) {
     return SDL_APP_CONTINUE;
 }
 
-void SDL_AppQuit(void* gameState, SDL_AppResult result) {
+void SDL_AppQuit(void* appState, SDL_AppResult result) {
 
 }
