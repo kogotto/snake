@@ -55,9 +55,6 @@ SDL_AppResult SDL_AppEvent(void* gameState, SDL_Event* event) {
 }
 
 SDL_AppResult SDL_AppIterate(void* gameState) {
-    const auto ticks = SDL_GetTicksNS();
-    SDL_Log("Elapsed: %ldms", ticks);
-
     SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
     SDL_RenderClear(renderer);
 
