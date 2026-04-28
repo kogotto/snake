@@ -14,7 +14,11 @@ add_executable(
     snake
 
     main.cpp
+
+    machine.cpp
 )
+
+include_directories(".")
 
 target_link_libraries(
     snake
