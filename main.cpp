@@ -1,3 +1,5 @@
+#include <array>
+
 #include <SDL3/SDL.h>
 
 #define SDL_MAIN_USE_CALLBACKS
@@ -6,6 +8,14 @@
 namespace {
 SDL_Window* window = nullptr;
 SDL_Renderer* renderer = nullptr;
+const auto points = [] () {
+    std::array<SDL_FPoint, 1000> points;
+    for (int i = 0; i < points.size(); ++i) {
+        points[i].x = SDL_randf() * 1024;
+        points[i].y = SDL_randf() * 768;
+    }
+    return points;
+} ();
 }
 
 SDL_AppResult SDL_AppInit(void** gameState, int argc, char** argv) {
@@ -48,8 +58,23 @@ SDL_AppResult SDL_AppIterate(void* gameState) {
     const auto ticks = SDL_GetTicksNS();
     SDL_Log("Elapsed: %ldms", ticks);
 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
     SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+    SDL_FRect rect{0.5, 0.5, 300, 300};
+    SDL_RenderFillRect(renderer, &rect);
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+    SDL_RenderPoints(renderer, points.data(), points.size());
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderLine(renderer, 0, 0, 1024, 768);
+    SDL_RenderLine(renderer, 0, 768, 1024, 0);
+
+    SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+    SDL_RenderLines(renderer, points.data(), points.size());
+
     SDL_RenderPresent(renderer);
 
     return SDL_APP_CONTINUE;
