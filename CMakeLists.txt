@@ -14,7 +14,13 @@ add_executable(
     snake
 
     main.cpp
+
+    Machine.cpp
+    MainMenuMachine.cpp
+    GameMachine.cpp
 )
+
+include_directories(".")
 
 target_link_libraries(
     snake
