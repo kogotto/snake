@@ -17,6 +17,7 @@ add_executable(
 
     Machine.cpp
     MainMenuMachine.cpp
+    GameMachine.cpp
 )
 
 include_directories(".")
