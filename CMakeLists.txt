@@ -15,7 +15,7 @@ add_executable(
 
     main.cpp
 
-    machine.cpp
+    Machine.cpp
 )
 
 include_directories(".")
