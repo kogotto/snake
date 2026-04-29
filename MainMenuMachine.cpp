@@ -21,7 +21,12 @@ auto MainMenuMachine::processEvent(const SDL_Event& event) -> Transition {
 
 
 void MainMenuMachine::iterate(SDL_Renderer* renderer, std::chrono::milliseconds tick) {
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+    SDL_RenderClear(renderer);
+
     SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
     SDL_FRect rect{0, 0, 300, 300};
     SDL_RenderFillRect(renderer, &rect);
+
+    SDL_RenderPresent(renderer);
 }
