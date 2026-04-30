@@ -1,5 +1,7 @@
 #include <GameMachine.hpp>
 
+#include <array>
+
 #include <SDL3/SDL.h>
 
 
