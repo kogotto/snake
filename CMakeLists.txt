@@ -18,6 +18,11 @@ add_executable(
     Machine.cpp
     MainMenuMachine.cpp
     GameMachine.cpp
+
+    CellIndex.cpp
+    IndexIterator.cpp
+    IndexRange.cpp
+    Field.cpp
 )
 
 include_directories(".")
