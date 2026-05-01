@@ -24,6 +24,9 @@ add_executable(
     IndexRange.cpp
     Field.cpp
 
+    GameModel.cpp
+    GameView.cpp
+
     Timer.cpp
 )
 
