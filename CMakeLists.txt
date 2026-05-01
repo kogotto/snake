@@ -23,6 +23,8 @@ add_executable(
     IndexIterator.cpp
     IndexRange.cpp
     Field.cpp
+
+    Timer.cpp
 )
 
 include_directories(".")
