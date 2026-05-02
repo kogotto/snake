@@ -18,6 +18,9 @@ struct NormalizedIndex {
 struct RowIndex {
     signed_index_t row;
 
+    constexpr friend bool operator==(RowIndex lhs,
+                                     RowIndex rhs) = default;
+
     constexpr RowIndex& operator+=(const RowIndex& rhs) {
         row += rhs.row;
         return *this;
@@ -31,6 +34,9 @@ struct RowIndex {
 
 struct ColIndex {
     signed_index_t col;
+
+    constexpr friend bool operator==(ColIndex lhs,
+                                     ColIndex rhs) = default;
 
     constexpr ColIndex& operator+=(const ColIndex& rhs) {
         col += rhs.col;
@@ -55,6 +61,9 @@ struct CellIndex {
     constexpr auto getRawRow() const { return row.row; }
 
     constexpr auto getRawCol() const { return col.col; }
+
+    constexpr friend bool operator==(CellIndex lhs,
+                                     CellIndex rhs) = default;
 
     constexpr CellIndex& operator+=(const CellIndex& rhs) {
         row += rhs.row;

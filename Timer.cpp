@@ -2,7 +2,7 @@
 
 
 bool Timer::timeHasCome(std::chrono::milliseconds now) const {
-    if (now <= prev_ + period_) {
+    if ( prev_ + period_<= now ) {
         prev_ = now;
         return true;
     }
