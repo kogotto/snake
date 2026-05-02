@@ -15,6 +15,7 @@ bool isBody(Cell cell) {
     }
 }
 
+
 Cell toEnum(CellIndex dir) {
     if (dir == dirs::up) {
         return Cell::bodyUp;
@@ -68,15 +69,21 @@ void GameModel::update() {
             break;
         }
     }
+    for (const auto index : field_.indexRange()) {
+        if (isTail(index)) {
+            updateTail(index);
+            break;
+        }
+    }
 }
 
 
 bool GameModel::isHead(CellIndex index) const {
-    const Cell headCell = field_.cell(index);
-    if (!isBody(headCell)) {
+    const Cell cell = field_.cell(index);
+    if (!isBody(cell)) {
         return false;
     }
-    const CellIndex nextCellIndex = index + toDir(headCell);
+    const CellIndex nextCellIndex = index + toDir(cell);
     return !isBody(field_.cell(nextCellIndex));
 }
 
@@ -86,4 +93,37 @@ void GameModel::updateHead(NormalizedIndex index) {
     head = toEnum(currentDirection_);
     auto newHeadIndex = index + currentDirection_;
     field_.cell(newHeadIndex) = head;
+}
+
+
+bool GameModel::isTail(CellIndex index) const {
+    const Cell cell = field_.cell(index);
+    return isBody(cell) && !hasBodyBefore(index);
+}
+
+
+bool GameModel::hasBodyBefore(CellIndex index) const {
+    auto allDirs = {dirs::up, dirs::right, dirs::down, dirs::left};
+    const Cell cell = field_.cell(index);
+    const CellIndex cellDir = toDir(cell);
+    for (const auto dir : allDirs) {
+        if (dir == cellDir) {
+            continue;
+        }
+        const CellIndex prevCellIndex = index + dir;
+        const Cell prevCell = field_.cell(prevCellIndex);
+        if (!isBody(prevCell)) {
+            continue;
+        }
+        const CellIndex prevCellDir = toDir(prevCell);
+        if (prevCellIndex + prevCellDir == index) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+void GameModel::updateTail(CellIndex index) {
+    field_.cell(index) = Cell::empty;
 }

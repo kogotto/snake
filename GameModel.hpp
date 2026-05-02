@@ -37,8 +37,10 @@ public:
     void update();
 private:
     bool isHead(CellIndex index) const;
-
     void updateHead(NormalizedIndex index);
+    bool isTail(CellIndex index) const;
+    void updateTail(CellIndex index);
+    bool hasBodyBefore(CellIndex index) const;
 
     FieldType field_{48, 64};
     CellIndex currentDirection_{dirs::right};
