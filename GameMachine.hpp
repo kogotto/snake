@@ -22,5 +22,5 @@ private:
     GameModel model;
     GameView view;
     Timer timer{std::chrono::milliseconds{0},
-        std::chrono::milliseconds{1000}};
+        std::chrono::milliseconds{300}};
 };
