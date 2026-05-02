@@ -21,6 +21,10 @@ struct RowIndex {
     constexpr friend bool operator==(RowIndex lhs,
                                      RowIndex rhs) = default;
 
+    constexpr RowIndex operator-() {
+        return {-row};
+    }
+
     constexpr RowIndex& operator+=(const RowIndex& rhs) {
         row += rhs.row;
         return *this;
@@ -37,6 +41,10 @@ struct ColIndex {
 
     constexpr friend bool operator==(ColIndex lhs,
                                      ColIndex rhs) = default;
+
+    constexpr ColIndex operator-() {
+        return {-col};
+    }
 
     constexpr ColIndex& operator+=(const ColIndex& rhs) {
         col += rhs.col;
@@ -64,6 +72,10 @@ struct CellIndex {
 
     constexpr friend bool operator==(CellIndex lhs,
                                      CellIndex rhs) = default;
+
+    constexpr CellIndex operator-() {
+        return {-row, -col};
+    }
 
     constexpr CellIndex& operator+=(const CellIndex& rhs) {
         row += rhs.row;
