@@ -15,9 +15,9 @@ enum class Cell {
 
 namespace dirs {
 constexpr CellIndex up    {RowIndex{-1}, ColIndex{0}};
-constexpr CellIndex right {RowIndex{0}, ColIndex{1}};
-constexpr CellIndex down  {RowIndex{1}, ColIndex{0}};
-constexpr CellIndex left  {RowIndex{0}, ColIndex{-1}};
+constexpr CellIndex right {RowIndex{0},  ColIndex{1}};
+constexpr CellIndex down  {RowIndex{1},  ColIndex{0}};
+constexpr CellIndex left  {RowIndex{0},  ColIndex{-1}};
 } // namespace dirs
 
 [[nodiscard]] bool isBody(Cell cell);
@@ -33,6 +33,8 @@ public:
     const FieldType& getField() const {
         return field_;
     }
+
+    void setCurrentDirection(CellIndex newDir);
 
     void update();
 private:

@@ -9,6 +9,18 @@ auto GameMachine::processEvent(const SDL_Event& event) -> Transition {
         switch (event.key.scancode) {
         case SDL_SCANCODE_ESCAPE:
             return Transition::exit;
+        case SDL_SCANCODE_UP:
+            model.setCurrentDirection(dirs::up);
+            break;
+        case SDL_SCANCODE_RIGHT:
+            model.setCurrentDirection(dirs::right);
+            break;
+        case SDL_SCANCODE_DOWN:
+            model.setCurrentDirection(dirs::down);
+            break;
+        case SDL_SCANCODE_LEFT:
+            model.setCurrentDirection(dirs::left);
+            break;
         default:
             break;
         }

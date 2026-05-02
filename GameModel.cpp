@@ -62,6 +62,14 @@ GameModel::GameModel() {
 }
 
 
+void GameModel::setCurrentDirection(CellIndex newDir) {
+    if (currentDirection_ == -newDir) {
+        return;
+    }
+    currentDirection_ = newDir;
+}
+
+
 void GameModel::update() {
     for (const auto index : field_.indexRange()) {
         if (isHead(index)) {
@@ -89,7 +97,7 @@ bool GameModel::isHead(CellIndex index) const {
 
 
 void GameModel::updateHead(NormalizedIndex index) {
-    Cell head = field_.cell(index);
+    Cell& head = field_.cell(index);
     head = toEnum(currentDirection_);
     auto newHeadIndex = index + currentDirection_;
     field_.cell(newHeadIndex) = head;
