@@ -2,10 +2,11 @@
 
 #include <chrono>
 
-#include <SDL3/SDL.h>
-
 #include <GameMachine.hpp>
 #include <MainMenuMachine.hpp>
+
+union SDL_Event;
+struct SDL_Renderer;
 
 class Machine {
 public:

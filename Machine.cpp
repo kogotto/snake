@@ -1,5 +1,7 @@
 #include <Machine.hpp>
 
+#include <SDL3/SDL.h>
+
 
 auto Machine::processEvent(const SDL_Event& event) -> Transition {
     switch (event.type) {
@@ -27,6 +29,8 @@ auto Machine::processEvent(const SDL_Event& event) -> Transition {
             return Transition::stay;
         }
     }
+
+    return Transition::stay;
 }
 
 
